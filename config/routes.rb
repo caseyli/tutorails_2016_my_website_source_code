@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
+  # BlogPosts RESTful Resource
+  get "/blog_posts" => "blog_posts#index"
+  get "/blog_posts/:id" => "blog_posts#show"
+
 end
