@@ -1,6 +1,6 @@
 <h1>Blog Posts</h1>
 
-<a href="/blog_posts/new">New Blog Post</a>
+<%= link_to "New Blog Post", new_blog_post_path %>
 
 <% @blog_posts.each do |blog_post| %>
 
@@ -10,9 +10,9 @@
     <%= blog_post.body %>
   </p>
 
-  <a href="/blog_posts/<%= blog_post.id %>">View Full Post</a>
-  <a href="/blog_posts/<%= blog_post.id %>/edit">Edit</a>
-  <a href="/blog_posts/<%= blog_post.id %>" data-method="delete">Destroy</a>
+  <%= link_to "View Full Post", blog_post %>
+  <%= link_to "Edit", edit_blog_post_path(blog_post) %>
+  <%= link_to "Destroy", blog_post, data: { method: "delete" } %>
 
 <% end %>
 

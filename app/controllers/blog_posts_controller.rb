@@ -1,25 +1,18 @@
 class BlogPostsController < ApplicationController
 
   def index
-
     @blog_posts = BlogPost.all
-
-    render("index")
   end
 
   def show
     @blog_post = BlogPost.find params[:id]
-    
-    render("show")
   end
 
   def new
     @blog_post = BlogPost.new
-    render("new")
   end
 
   def create
-    blog_post_params = params.require(:blog_post).permit(:title, :body)
     @blog_post = BlogPost.new(blog_post_params)
 
     if @blog_post.save
@@ -32,13 +25,10 @@ class BlogPostsController < ApplicationController
 
   def edit
     @blog_post = BlogPost.find(params[:id])
-    render("edit")
   end
 
   def update
     @blog_post = BlogPost.find(params[:id])
-
-    blog_post_params = params.require(:blog_post).permit(:title, :body)
 
     if @blog_post.update(blog_post_params)
       redirect_to "/blog_posts/#{ @blog_post.id }"
@@ -52,5 +42,11 @@ class BlogPostsController < ApplicationController
     blog_post.destroy
     redirect_to "/blog_posts"
   end
+
+  private
+
+    def blog_post_params
+      params.require(:blog_post).permit(:title, :body)
+    end
 
 end
